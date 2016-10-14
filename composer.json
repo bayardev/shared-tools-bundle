@@ -1,0 +1,38 @@
+{
+    "name": "bayardev/shared-tools-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Bundle with shared tools for Bayard projects (but every symfony project can use it)",
+    "keywords": ["symfony", "bayard", "tools"],
+    "homepage": "https://github.com/bayardev",
+    "license": "OSL-3.0",
+    "time": "2016-10-09",
+    "authors": [
+        {
+            "name": "Massimiliano Pasquesi",
+            "email": "massimiliano.pasquesi@bayard-presse.com",
+            "role": "Devoloper"
+        }
+    ],
+    "support": {
+        "email": "massipasquesi@gmail.com",
+        "source": "https://github.com/bayardev/shared-tools-bundle"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "symfony/symfony": ">=2.7",
+        "twig/extensions": "1.2.0",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "phpspec/phpspec": "3.0.0"
+    },
+    "autoload": {
+        "psr-4": { "Bayard\\Bundle\\SharedToolsBundle\\": "" }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "dev"
+        }
+    }
+}
