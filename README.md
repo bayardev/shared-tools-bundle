@@ -8,7 +8,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```console
-$ composer require bayard/shared-tools-bundle "dev-master"
+$ composer require bayardev/shared-tools-bundle "dev-master"
 ```
 
 This command requires you to have Composer installed globally, as explained
