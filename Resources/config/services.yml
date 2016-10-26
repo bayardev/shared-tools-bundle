@@ -17,6 +17,6 @@ services:
   bayard_shared.twig_extension:
         class: Bayard\Bundle\SharedToolsBundle\Twig\BayardVersionExtension
         public: false
-        arguments: [@bayard_shared.helper.version]
+        arguments: ["@bayard_shared.helper.version"]
         tags:
             - { name: twig.extension }
