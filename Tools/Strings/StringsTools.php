@@ -256,14 +256,16 @@ class StringsTools
 
     /**
      * Change case of all elements of given array
+     * Extends case's possibility of array_change_key_case() php function
+     * that accept only CASE_LOWER or CASE_UPPER
      *
-     * @param  Array $haystack
+     * @param  Array $array
      * @param  string $case
      * @return Array
      */
-    static public function arrayChangeKeyCase(Array $haystack, $case = 'lower')
+    static public function arrayChangeKeyCase(Array $array, $case = 'lower')
     {
-        foreach ($haystack as $k => $v) {
+        foreach ($array as $k => $v) {
             $new_array[self::convert_case($k, $case)] = $v;
         }
 
