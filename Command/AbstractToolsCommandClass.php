@@ -35,8 +35,8 @@ abstract class AbstractToolsCommandClass extends AbstractCommandClass
            			   "Method to be executed (use -l to have the list of availables methods)."
             )
             ->addArgument('parameters',
-      	    		    InputArgument::OPTIONAL,
-    	    		   "List of method's parameters separated by a comma"
+      	    		    InputArgument::IS_ARRAY | InputArgument::OPTIONAL,
+    	    		   "List of method's parameters separated by a space"
 
             )
             ->addDefaultOptions()
@@ -66,10 +66,7 @@ abstract class AbstractToolsCommandClass extends AbstractCommandClass
     }
 
     /**
-     * @todo  1. Comme on va changer l'argument 'parameters' en InputArgument::IS_ARRAY
-     *        Le traitement va être different :
-     *        http://symfony.com/doc/current/components/console/introduction.html#using-command-arguments
-     *        2. On doit pouvoir faire la distinction entre '123' et 123, '123.33' et 123.33
+     * @todo  On doit pouvoir faire la distinction entre '123' et 123, '123.33' et 123.33
      *        ça va peut être se resoudre avec l'utilisation de InputArgument::IS_ARRAY ...
      */
     protected function getCommandArguments() {
@@ -81,15 +78,23 @@ abstract class AbstractToolsCommandClass extends AbstractCommandClass
 
         if ($parameters = $this->input->getArgument('parameters')) {
 
-            $this->parameters = explode(',', $parameters);
+            $this->parameters = $parameters;
 
-            foreach ($this->parameters as $param) {
+            foreach ($this->parameters as $key => $param) {
+                $param = PhpTypesTools::detectArrayInString($param);
+
                 switch (true) {
+                    case is_array($param) :
+                        $this->parameters[$key] = $param;
+                        break;
+                    // case is_bool(PhpTypesTools::detectBooleanInString($param)):
+                    //     $this->parameters[$key] = PhpTypesTools::detectBooleanInString($param);
+                    //     break;
                     case in_array($param, array('true', 'false')):
-                        $param = ($param == 'true')? true : false;
+                        $this->parameters[$key] = ($param == 'true')? true : false;
                         break;
                     case is_numeric($param):
-                        $param = (floatval($param) == intval($param))? intval($param) : floatval($param);
+                        $this->parameters[$key] = (floatval($param) == intval($param))? intval($param) : floatval($param);
                         break;
                     default:
                         continue;
