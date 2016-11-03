@@ -44,4 +44,11 @@ class BayardSharedException extends \Exception implements BayardSharedToolsBundl
 
         return new self($msg);
     }
+
+    public static function entityPropertyNotFound($entity, $property)
+    {
+        $msg = "The entity '".$entity."' does not have a property named '".$property."'!";
+
+        return new self($msg);
+    }
 }
