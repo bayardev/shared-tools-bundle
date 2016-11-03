@@ -95,9 +95,15 @@ abstract class AbstractCommandClass extends ContainerAwareCommand
         return $prefix;
     }
 
-    protected function notYet($what)
+    protected function notYet($what = null)
     {
+        $what = (is_null($what))? $this->getName() : $what;
         $this->io->warning("Sorry but '".$what."' is not yet implemented !");
+    }
+
+    protected function deprecated()
+    {
+        $this->io->warning("Sorry but '".$this->getName()."' is no more exploitable !");
     }
 
     protected function happyEnd($messages = array())
