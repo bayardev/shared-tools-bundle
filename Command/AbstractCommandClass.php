@@ -103,7 +103,7 @@ abstract class AbstractCommandClass extends ContainerAwareCommand
 
     protected function deprecated()
     {
-        $this->io->warning("Sorry but '".$this->getName()."' is no more exploitable !");
+        $this->io->warning("Sorry but '".$this->getName()."' is Deprecated and No more Exploitable !");
     }
 
     protected function happyEnd($messages = array())
