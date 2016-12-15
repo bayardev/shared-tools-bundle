@@ -11,7 +11,7 @@ services:
 
   bayard_shared.helper.version:
     class: Bayard\Bundle\SharedToolsBundle\Helper\VersionHelper
-    arguments: [%kernel.root_dir%]
+    arguments: ["%kernel.root_dir%"]
 
   # TWIG Extensions
   bayard_shared.twig_extension:
