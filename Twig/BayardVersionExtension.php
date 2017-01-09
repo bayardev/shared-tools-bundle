@@ -24,8 +24,8 @@ class BayardVersionExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            'bayard_version' => new \Twig_Function_Method($this, 'bayardVersion'),
-            'bayard_git_branch' => new \Twig_Function_Method($this, 'bayardGitBranch'),
+            new \Twig_SimpleFunction('bayard_version' ,array($this, 'bayardVersion')),
+            new \Twig_SimpleFunction('bayard_git_branch' ,array($this, 'bayardGitBranch')),
         ];
     }
 
