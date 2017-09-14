@@ -40,6 +40,13 @@ class VersionHelper
         return $version;
     }
 
+    public function setAppVersion($version)
+    {
+        $result = file_put_contents($this->getVersionFilePath(), $version);
+
+        return $result;
+    }
+
     /**
      * Returns the current git branch
      *
@@ -59,12 +66,5 @@ class VersionHelper
 
 
         return $git_branch;
-    }
-
-    public function setAppVersion($version)
-    {
-        $result = file_put_contents($this->getVersionFilePath(), $version);
-
-        return $result;
     }
 }
