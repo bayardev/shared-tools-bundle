@@ -1,22 +1,35 @@
 services:
-  bayard_shared.output_writer:
-    class: Bayard\Bundle\SharedToolsBundle\Console\Style\BayardStyle
+    bayard_shared.output_writer:
+        class: Bayard\Bundle\SharedToolsBundle\Console\Style\BayardStyle
 
-  bayard_shared.faker:
-    abstract:  true
+    bayard_shared.faker:
+        abstract:  true
 
-  bayard_shared.faker.output_writer:
-    class: Bayard\Bundle\SharedToolsBundle\Faker\outputWriterFaker
-    parent: bayard_shared.faker
+    bayard_shared.faker.output_writer:
+        class: Bayard\Bundle\SharedToolsBundle\Faker\outputWriterFaker
+        parent: bayard_shared.faker
 
-  bayard_shared.helper.version:
-    class: Bayard\Bundle\SharedToolsBundle\Helper\VersionHelper
-    arguments: ["%kernel.root_dir%"]
+    bayard_shared.helper.version:
+        class: Bayard\Bundle\SharedToolsBundle\Helper\VersionHelper
+        arguments: ["%kernel.root_dir%"]
 
-  # TWIG Extensions
-  bayard_shared.twig_extension:
+    # TWIG Extensions
+    bayard_shared.twig_extension:
         class: Bayard\Bundle\SharedToolsBundle\Twig\BayardVersionExtension
         public: false
         arguments: ["@bayard_shared.helper.version"]
         tags:
             - { name: twig.extension }
+
+    # Logger
+    bayardlog.formatter.syslog_line:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "%%extra.server%% [%%datetime%%] %%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"
+
+    bayardlog.processor.web:
+        class: Bayard\Bundle\SharedToolsBundle\Logger\BayardWebProcessor
+        autowire: true
+        tags:
+            - { name: monolog.processor, method: __invoke, handler: syslog }
+
