@@ -31,7 +31,6 @@ in the `app/AppKernel.php` file of your project:
 ```php
 <?php
 // app/AppKernel.php
-
 // ...
 class AppKernel extends Kernel
 {
@@ -39,13 +38,69 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-
             new Bayard\Bundle\SharedToolsBundle\BayardSharedToolsBundle(),
         );
-
         // ...
     }
-
     // ...
 }
 ```
+
+## Use of ScriptHandler::checkDoctrineMigrations
+
+Before you can put this ScriptHandler in composer.json of your project
+ensure that you have in bundles list in APPKernel.php **DoctrineMigrationsBundle** :
+
+```php
+<?php
+// app/AppKernel.php
+// ...
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+        );
+        // ...
+    }
+    // ...
+}
+```
+
+Than you can add this in composer.json like this :
+
+```json
+{
+    /*...*/
+    "scripts": {
+            /*...*/
+            "post-install-cmd": [
+                "@symfony-scripts",
+                "Bayard\\Bundle\\SharedToolsBundle\\Composer\\ScriptHandler::checkDoctrineMigrations"
+            ]
+             /*...*/
+        }
+    /*...*/
+}
+```
+
+## Use of syslog handler
+
+Just add in your config.yml or/and in config_dev.yml, config_prod.yml theses parameters :
+
+```yaml
+monolog:
+    handlers:
+        #...
+        syslog:
+            type: syslog
+            level: error
+            ident: app
+            facility: local7
+            formatter: bayardlog.formatter.syslog_line
+```
+
+Be free to chnage **level** parameter but **you must leave intouched the others parameters for all Bayard Projects** ...
+
