@@ -29,6 +29,10 @@ services:
 
     bayardlog.processor.web:
         class: Bayard\Bundle\SharedToolsBundle\Logger\BayardWebProcessor
+        arguments:
+            - ~
+            - ~
+            - "%kernel.project_dir%"
         autowire: true
         tags:
             - { name: monolog.processor, method: __invoke, handler: syslog }

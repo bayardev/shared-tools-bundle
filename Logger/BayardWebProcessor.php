@@ -6,7 +6,25 @@ use Monolog\Processor\WebProcessor;
 
 class BayardWebProcessor extends WebProcessor
 {
-    private $servername;
+    /**
+     * @var string|null
+     */
+    private $kernel_project_dir;
+    /**
+     * @var string
+     */
+    private $app_name;
+
+    /**
+     * {@inheritdoc}
+     * @param string|null kernel parameter kernel.project_dir
+     */
+    public function __construct($serverData = null, array $extraFields = null, $kernel_project_dir = null)
+    {
+        $this->kernel_project_dir = $kernel_project_dir;
+        $this->app_name = (null === $kernel_project_dir) ? "app" : basename($kernel_project_dir);
+        parent::__construct($serverData, $extraFields);
+    }
 
     /**
      * {@inheritdoc}
@@ -14,8 +32,7 @@ class BayardWebProcessor extends WebProcessor
     public function __invoke(array $record) {
 
         if (!isset($this->serverData['REQUEST_URI'])) {
-            $servername = shell_exec('stat -c %U'.__FILE__);
-            $record['extra'] = ['server' => $servername];
+            $record['extra'] = ['server' => $this->app_name];
             return $record;
         }
 
