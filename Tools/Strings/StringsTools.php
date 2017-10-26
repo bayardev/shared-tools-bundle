@@ -297,15 +297,39 @@ class StringsTools
     }
 
     /**
-     * oui
      * [trimStringNumber description]
-     * @param  [type] $str_number [description]
-     * @param  string $separator  [description]
-     * @return [type]             [description]
+     * @param  string $str_number
+     * @param  string $separator
+     * @return string
      */
     static public function trimStringNumber($str_number, $separator = " ")
     {
         return str_replace($separator, '', $str_number);
+    }
+
+    /**
+     * Get shortified version of a string
+     *
+     * @param   string $str
+     * @param   int $lenght
+     * @param   string|null $case @see StringsTools::convert_case()
+     * @param   string $special_accepted
+     * @return  string
+     */
+    static public function shortify($str, $lenght = 5, $case = null, $special_accepted = "\-_")
+    {
+        if (null !== $case) {
+            $str = self::convert_case($str, $case);
+        }
+
+        $str = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+
+        $accepted_characters = "A-Za-z0-9" . $special_accepted;
+        $preg_str = '/[^' . $accepted_characters . ']/';
+
+        $short_str = preg_replace($preg_str, '', $str);
+
+        return substr($short_str, 0, $lenght);
     }
 
 }
