@@ -32,7 +32,7 @@ services:
         arguments:
             - ~
             - ~
-            - "%kernel.project_dir%"
+            - "%kernel.root_dir%"
         autowire: true
         tags:
             - { name: monolog.processor, method: __invoke, handler: syslog }
