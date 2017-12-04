@@ -2,6 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/bayardev/shared-tools-bundle/v/stable)](https://packagist.org/packages/bayardev/shared-tools-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/bayardev/shared-tools-bundle/v/unstable)](https://packagist.org/packages/bayardev/shared-tools-bundle#dev-master)
+[![PHP required version](https://img.shields.io/badge/php-%3E%3D5.6-8892BF.svg?style=flat-square)](https://github.com/bayardev/shared-tools-bundle/blob/master/composer.json)
 [![License](https://poser.pugx.org/bayardev/shared-tools-bundle/license)](https://github.com/bayardev/shared-tools-bundle/blob/master/LICENCE)
 [![Total Downloads](https://poser.pugx.org/bayardev/shared-tools-bundle/downloads)](https://packagist.org/packages/bayardev/shared-tools-bundle)
 
