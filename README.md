@@ -1,8 +1,13 @@
-Installation
-============
+# bayardev/shared-tools-bundle
 
-Step 1: Download the Bundle
----------------------------
+[![Latest Stable Version](https://poser.pugx.org/bayardev/shared-tools-bundle/v/stable)](https://packagist.org/packages/bayardev/shared-tools-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/bayardev/shared-tools-bundle/v/unstable)](https://packagist.org/packages/bayardev/shared-tools-bundle#dev-master)
+[![License](https://poser.pugx.org/bayardev/shared-tools-bundle/license)](https://github.com/bayardev/shared-tools-bundle/blob/master/LICENCE)
+[![Total Downloads](https://poser.pugx.org/bayardev/shared-tools-bundle/downloads)](https://packagist.org/packages/bayardev/shared-tools-bundle)
+
+## Installation
+
+### Step 1: Download the Bundle
 
 Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
@@ -16,14 +21,12 @@ in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
 of the Composer documentation.
 
 
-Step 2: Create VERSION file
----------------------------
+### Step 2: Create VERSION file
 
 Create an empty file named VERSION in root dir of the project
 
 
-Step 3: Enable the Bundle
--------------------------
+### Step 3: Enable the Bundle
 
 Then, enable the bundle by adding it to the list of registered bundles
 in the `app/AppKernel.php` file of your project:
