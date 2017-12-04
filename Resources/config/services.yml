@@ -33,6 +33,7 @@ services:
             - ~
             - ~
             - "%kernel.root_dir%"
+            - "@request_stack"
         autowire: true
         tags:
             - { name: monolog.processor, method: __invoke }
