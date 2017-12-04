@@ -21,6 +21,9 @@ class BayardWebProcessor extends WebProcessor
             "app" :
             basename(dirname($kernel_root_dir));
 
+        $this->addExtraField('client_ip', 'HTTP_CLIENT_IP');
+        $this->addExtraField('forwarded_for', 'HTTP_X_FORWARDED_FOR');
+
         parent::__construct($serverData, $extraFields);
     }
 
